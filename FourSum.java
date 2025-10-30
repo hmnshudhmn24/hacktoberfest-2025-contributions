@@ -5,20 +5,22 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
-// Given an array nums of n integers, return an array of all the unique quadruplets [nums[a], nums[b], nums[c], nums[d]] such that:
-
-// 0 <= a, b, c, d < n
-// a, b, c, and d are distinct.
-// nums[a] + nums[b] + nums[c] + nums[d] == target
-// You may return the answer in any order.
-
- 
-
-
+// Problem: Four Sum
+// Given an array nums of n integers, return all unique quadruplets [nums[a], nums[b], nums[c], nums[d]]
+// such that 0 <= a, b, c, d < n, and nums[a] + nums[b] + nums[c] + nums[d] == target.
+// The solution should avoid duplicate quadruplets.
 public class FourSum {
     
-    // Brute force 
-    // TC -> (O(n^4))
+    // ----------------------------------------------------------------
+    // 🧮 Brute Force Approach
+    // ----------------------------------------------------------------
+    // Time Complexity: O(n^4)
+    // Space Complexity: O(n^4) due to storing all combinations in the HashSet
+    // Explanation:
+    // - Use 4 nested loops to explore every possible quadruplet.
+    // - Check if the sum equals target.
+    // - Sort each quadruplet and store it in a HashSet to avoid duplicates.
+    // ----------------------------------------------------------------
     // static List<List<Integer>> FourSum(int[] arr, int target) {
     //     int n = arr.length;
     //     HashSet<List<Integer>> st = new HashSet<>(); // TC -> on avg -> O(1), and on worst case -> O(Log(m))
@@ -46,9 +48,18 @@ public class FourSum {
     // }
 
 
-    // Better solution 
-    // TC -> O(n^3 Log(m))
-    // SC -> O(n) + O(n^3)
+    // ----------------------------------------------------------------
+    // ⚙️ Better Approach (Using HashSet to store the 4th element)
+    // ----------------------------------------------------------------
+    // Time Complexity: O(n^3)
+    // Space Complexity: O(n) for HashSet + O(n^3) for storing results
+    // Explanation:
+    // - Fix the first two numbers (i, j).
+    // - For the remaining subarray, use a HashSet to find the fourth number
+    //   such that arr[i] + arr[j] + arr[k] + fourth == target.
+    // - Use a HashSet of lists to avoid duplicate quadruplets.
+    // ----------------------------------------------------------------
+
     // static List<List<Integer>> FourSum(int[] arr, int target) {
     //     int n = arr.length;
     //     HashSet<List<Integer>> st = new HashSet<>(); // TC -> on avg -> O(1), and on worst case -> O(Log(m))
@@ -73,9 +84,18 @@ public class FourSum {
     // }
 
 
-    // Oprimal solution 
-    // TC -> O(n^3) + O(nLog(n))
-    // SC -> O(1) + O(n^3)or O(number of quadruplet)
+    // ----------------------------------------------------------------
+    // 🚀 Optimal Approach (Two-Pointer after Sorting)
+    // ----------------------------------------------------------------
+    // Time Complexity: O(n^3) + O(n log n) (for sorting)
+    // Space Complexity: O(1) (ignoring output list)
+    // Explanation:
+    // - Sort the array to easily skip duplicates and use two-pointer optimization.
+    // - Fix the first two indices (i, j) and then apply the two-pointer technique
+    //   for the remaining elements (k, l).
+    // - Move pointers based on the current sum compared to the target.
+    // - Skip duplicates to ensure unique quadruplets.
+    // ----------------------------------------------------------------
     static List<List<Integer>> FourSum(int[] arr, int target) {
         // TC -> O(nLog(n))
         Arrays.sort(arr);
