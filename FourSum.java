@@ -1,5 +1,3 @@
-// package _5_arrays.hard;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -17,7 +15,7 @@ import java.util.List;
  
 
 
-public class _4_FourSum {
+public class FourSum {
     
     // Brute force 
     // TC -> (O(n^4))
